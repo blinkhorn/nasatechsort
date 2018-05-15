@@ -33,3 +33,8 @@ class PrimaryTechnologyAreas(models.Model):
         (TA_14, 'Thermal Management Systems'),
         (TA_15, 'Aeronautics')
     )
+    primary_tech_area = models.CharField(
+        max_length = 7,
+        choices = PRIMARY_TECH_AREA_CHOCIES,
+        default = TA_1
+    )
