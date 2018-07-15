@@ -1,6 +1,8 @@
 from django.db import models
+from datetime import date
+from django.urls import reverse
 
-class PrimaryTechnologyAreas(models.Model):
+class PrimaryTech(models.Model):
     TA_1 = 'LPS'
     TA_2 = 'ISPT'
     TA_3 = 'SPES'
@@ -16,6 +18,7 @@ class PrimaryTechnologyAreas(models.Model):
     TA_13 = 'GLS'
     TA_14 = 'TMS'
     TA_15 = 'A'
+   
     PRIMARY_TECH_AREA_CHOCIES = (
         (TA_1, 'Launch Propulsion Systems'),
         (TA_2, 'In-Space Propulsion Technologies'),
@@ -38,3 +41,11 @@ class PrimaryTechnologyAreas(models.Model):
         choices = PRIMARY_TECH_AREA_CHOCIES,
         default = TA_1
     )
+    
+    pub_date = models.DateTimeField('date published', default=None)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('primary_tech_edit', kwargs={'pk': self.pk})
